@@ -1,0 +1,27 @@
+.prevnext {
+    text-align: center;
+    width: 100px;
+    height: 80px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px 80px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#indexLabel {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 80px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+}
