@@ -1,5 +1,9 @@
 /**@type{string} */
 var filename;
+/**@type{string} */
+var problem;
+/**@type{number} */
+var linenum;
 
 /**
  * 
@@ -8,6 +12,8 @@ var filename;
 function parseLine(text)
 {
     var lines = text.split('\n');
+    linenum = 0;
+    problem = "";
     filename = getNonCommentLine(lines);
     var boxes = [];
     /**@type{string} */
@@ -17,17 +23,21 @@ function parseLine(text)
         var box = {};
 
         line = getNonCommentLine(lines);
-        if (!line) {
+        if (line == null) {
+            problem = "Expected a number."
+            broken = true;
             break;
         }
         box.id = parseInt(line, 10);
         if (isNaN(box.id)) {
+            problem = "Expected a number.";
             broken = true;
             break;
         }
 
         line = getNonCommentLine(lines);
         if (line == null) {
+            problem = "Expected a name.";
             broken = true;
             break;
         }
@@ -35,6 +45,7 @@ function parseLine(text)
         
         line = getNonCommentLine(lines);
         if (line == null) {
+            problem = "Expected message text.";
             broken = true;
             break;
         }
@@ -44,6 +55,7 @@ function parseLine(text)
         var msgline;
         line = getNonCommentLine(lines);
         if (line == null) {
+            problem = "Expected message text or $ symbol.";
             broken = true;
             break;
         }
@@ -51,6 +63,7 @@ function parseLine(text)
             message += '\n' + msgline;
             line = getNonCommentLine(lines);
             if (line == null) {
+                problem = "Expected message text or $ symbol.";
                 broken = true;
                 break;
             }
@@ -73,8 +86,9 @@ function getNonCommentLine(lines)
     /** @type{string} */
     var line;
     do {
+        linenum += 1;
         line = lines.shift();
-    } while ((line !== null) && line.charAt(0) == "#");
+    } while (!(line === undefined) && line.charAt(0) == "#");
     return line;
 }
 

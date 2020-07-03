@@ -1,12 +1,16 @@
-var sprites;
-var spritesLoaded = false;
+var spritesWhite = {};
+var spritesBlack = {};
+var spritesLoaded = 0;
 
-function loadFont() {
-    var img = new Image();
-    img.onload = function() {
+var backgroundImg = new Image();
+backgroundImg.src = "back.png";
+
+function loadFont(sprites, imgsrc) {
+    var imgWhite = new Image();
+    imgWhite.onload = function() {
         Promise.all(fontdata.map(
             function (value){
-            return createImageBitmap(img, 
+            return createImageBitmap(imgWhite, 
                 value.datax, 
                 value.datay, 
                 value.datawidth, 
@@ -24,8 +28,7 @@ function loadFont() {
             )
             }
         )).then(function (result){
-            spritesLoaded = true;
-            sprites = {};
+            spritesLoaded += 1;
             result.forEach(
                 function (value) {
                     sprites[value.key] = {
@@ -38,7 +41,8 @@ function loadFont() {
             )
         })
     }
-    img.src = "font.png";
+    imgWhite.src = imgsrc;
 }
 
-loadFont();
+loadFont(spritesWhite, "fontwhite.png");
+loadFont(spritesBlack, "fontblack.png");

@@ -7,15 +7,15 @@ var canvasx;
 var canvasy;
 
 function drawProvidedString() {
-    drawString(document.getElementById("textinput").value);
+    drawString(document.getElementById("textinput").value, spritesBlack, 16);
 }
 
 /**
  * 
  * @param {string} text 
+ * @param {number} posx
  */
-function drawString(text) {
-    if (spritesLoaded) {
+function drawString(text, sprites, posx) {
         currentBoxes = null;
         disableButtons();
         document.getElementById("indexLabel").innerHTML = "-";
@@ -24,36 +24,50 @@ function drawString(text) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvasx = 32;
         canvasy = 32;
+    if (spritesLoaded == 2) {
         var charArray = text.split("");
-        charArray.forEach(drawChar);
+        charArray.forEach((char) => drawChar(char, sprites, posx));
+        document.getElementById("problemLabel").innerHTML = "";
     }
 }
 
 /**
  * 
  * @param {string} char 
+ * @param {number} posx
  */
-function drawChar(char) {
-    drawNum(char.codePointAt(0));
+function drawChar(char, sprites, posx) {
+    drawNum(char.codePointAt(0), sprites, posx);
 }
 
+
+/**@type{number} */
+var lineWidth;
 /**
  * 
  * @param {number} n 
+ * @param {number} posx
  */
-function drawNum(n) {
+function drawNum(n, sprites, posx, widthmax = Infinity) {
     if (n == 10) {
-        canvasx = 32;
-        canvasy += 32;
+        lineWidth = 0;
+        canvasx = posx;
+        canvasy += 34;
     } else {
         var chardata = sprites[n];
         if (!chardata) {
             chardata = sprites[12539];
         }
+        if (lineWidth + chardata.width > widthmax) {
+            lineWidth = 0;
+            canvasx = posx;
+            canvasy += 34;
+        }
         ctx.drawImage(chardata.bitmap, 
             canvasx + chardata.offsetx,
             canvasy + chardata.offsety);
         canvasx += chardata.width;
+        lineWidth += chardata.width;
     }
 }
 
@@ -64,14 +78,15 @@ function drawNum(n) {
  * @param {number} posx 
  * @param {number} posy 
  */
-function drawNumArray(array, clear = true, posx = 32, posy = 32)
+function drawNumArray(array, sprites, clear = true, posx = 32, posy = 32, widthmax = Infinity)
 {
     canvasx = posx;
     canvasy = posy;
+    lineWidth = 0;
     if (clear) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(backgroundImg, 0, 0);
     }
-    array.forEach(drawNum);
+    array.forEach((n) => drawNum(n, sprites, posx, widthmax));
 }
 
 /**@type{number} */
@@ -81,13 +96,15 @@ var currentBoxes = [];
 
 function parseProvidedString()
 {
-    if (spritesLoaded) {
+    if (spritesLoaded == 2) {
         currentBoxes = parseLine(document.getElementById("textinput").value);
-        if (currentBoxes == null) {
+        if (currentBoxes == null || currentBoxes.length == 0) {
             document.getElementById("indexLabel").innerHTML = "Error parsing text!";
+            document.getElementById("problemLabel").innerHTML = "Line " + linenum + ": " + problem;
         } else {
             currentIndex = 0;
             drawCurrentBox();
+            document.getElementById("problemLabel").innerHTML = "";
         }
     }
 }
@@ -107,8 +124,8 @@ function drawCurrentBox()
  */
 function drawBox(box)
 {
-    drawNumArray(encode(box.speaker), true, 32, 64);
-    drawNumArray(encode(box.message), false, 32, 112);
+    drawNumArray(encode(box.speaker).slice(0, 12), spritesWhite, true, 52, 34);
+    drawNumArray(encode(box.message).slice(0, 63), spritesBlack, false, 64, 86, 834);
 }
 
 

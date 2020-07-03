@@ -3,9 +3,9 @@
     <head>
         <link rel="stylesheet" href="style.css">
         <script defer src="fontdata.js"></script>
+        <script defer src="load_font.js"></script>
         <script defer src="parse_text.js"></script>
         <script defer src="draw_text.js"></script>
-        <script defer src="load_font.js"></script>
     </head>
     <body>
         <h1>OFA Font & Textbox Displayer</h1>
@@ -37,7 +37,10 @@
             <button onclick="parseProvidedString()">Parse and draw</button>
         </p>
         <p>
-            <canvas id="canvas" width="800" height="400" style="border: 1px solid #888888; background-color: black;"></canvas>
+            <canvas id="canvas" width="918" height="187"></canvas>
+        </p>
+        <p>
+            <label id="problemLabel"> </label>
         </p>
         <p>
             <button class="prevnext" id="btnPrev" onclick="prevBox()">Previous</button>
