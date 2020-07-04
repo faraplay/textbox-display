@@ -13,6 +13,21 @@ h1 {
     text-align: center;
 }
 
+.div_left {
+    width: 30%;
+    display: inline-block;
+    text-align: left;
+    border: 1px solid gray;
+    padding: 10px 10px;
+}
+
+.div_right {
+    width: 65%;
+    display: inline-block;
+    border: 1px solid gray;
+    padding: 10px 10px;
+}
+
 p {
     text-align: center;
 }

@@ -12,7 +12,7 @@ var linenum;
 function parseLine(text)
 {
     var lines = text.split('\n');
-    linenum = 0;
+    linenum = 1;
     problem = "";
     filename = getNonCommentLine(lines);
     var boxes = [];
@@ -44,7 +44,7 @@ function parseLine(text)
         box.speaker = line;
         
         line = getNonCommentLine(lines);
-        if (line == null) {
+        if (line == null || line == "$") {
             problem = "Expected message text.";
             broken = true;
             break;
