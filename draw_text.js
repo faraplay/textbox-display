@@ -22,7 +22,7 @@ function drawString(text, sprites, posx) {
         canvas = document.getElementById("canvas");
         ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvasx = 32;
+        canvasx = posx;
         canvasy = 32;
     if (spritesLoaded == 2) {
         var charArray = text.split("");
