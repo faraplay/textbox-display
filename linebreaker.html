@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="fontdata.js"></script>
+        <script defer src="linebreak.js"></script>
+    </head>
+    <body>
+        <h1>Line Breaker</h1>
+        <h4>Instructions</h4>
+        Enter your text into the text box below, and the maximum width limit into 
+        the max width box.
+        Click the Linebreak button and the text will have 
+        linebreaks added to it to keep it under the maximum width.
+        <p>
+            Max width: 
+            <input type="number" id="widthinput" min="64" value="474"></input>
+        </p>
+        <p>
+            <textarea cols="80" rows="20" id="textinput"></textarea>
+        </p>
+        <p>
+            <button onclick="replaceLineBreakText()">Linebreak</button>
+        </p>
+    </body>
+</html> 
