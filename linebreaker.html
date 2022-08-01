@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="style.css">
         <script defer src="fontdata.js"></script>
         <script defer src="linebreak.js"></script>
+        <script defer src="emojidata.js"></script>
+        <script defer src="emojiHelper.js"></script>
     </head>
     <body>
         <h1>Line Breaker</h1>
@@ -12,6 +14,8 @@
         the max width box.
         Click the Linebreak button and the text will have 
         linebreaks added to it to keep it under the maximum width.
+        <br>
+        You can also click the Kanji to Emoji or Emoji to Kanji buttons to convert the kanji to emoji and vice versa.
         <p>
             Max width: 
             <input type="number" id="widthinput" min="64" value="464"></input>
@@ -21,6 +25,12 @@
         </p>
         <p>
             <button onclick="replaceLineBreakText()">Linebreak</button>
+        </p>
+        <p>
+            <button onclick="replaceKtEText()">Change Kanji to Emoji</button>
+        </p>
+        <p>
+            <button onclick="replaceEtKText()">Change Emoji to Kanji</button>
         </p>
     </body>
 </html> 
