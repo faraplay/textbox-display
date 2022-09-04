@@ -78,7 +78,7 @@ function lineBreakText(text)
 function replaceLineBreakText() 
 {
     let text = document.getElementById("textinput").value;
-    document.getElementById("textinput").value = lineBreakText(text);
+    document.getElementById("textinput").value = lineBreakText(emojiToKanji(text));
 }
 
 loadFontWidths();
