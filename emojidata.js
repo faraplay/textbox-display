@@ -40,7 +40,7 @@ const emojidata = [
     {"kanji":"虧", "emoji":"🚋"},
     {"kanji":"蠹", "emoji":"✉"},
     {"kanji":"褻", "emoji":"💔"},
-    {"kanji":"諛", "emoji":"🏃‍♂️"},
+    {"kanji":"諛", "emoji":"🏃"},
     {"kanji":"赭", "emoji":"🏠"},
     {"kanji":"跋", "emoji":"🎵"},
     {"kanji":"蹙", "emoji":"💨"},

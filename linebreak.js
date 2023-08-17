@@ -57,6 +57,7 @@ function lineBreakText(text)
                     wordWidth += charWidth;
                 } else {
                     newText += word;
+                    lineWidth += wordWidth;
                     lineIsNew = false;
                     word = c;
                     wordWidth = charWidth;
@@ -68,9 +69,9 @@ function lineBreakText(text)
         }
     }
     if (lineIsNew) {
-        newText += word + "\n";
+        newText += word;
     } else {
-        newText += " " + word + "\n";
+        newText += " " + word;
     }
     return newText;
 }
