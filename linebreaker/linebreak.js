@@ -7,12 +7,11 @@ function loadFontWidths() {
     }
 }
 
-function lineBreakText(text)
+function lineBreakText(text, maxWidth)
 {
     let word = ""; //this must stay shorter than maxwidth at the start of each loop
     let wordWidth = 0;
     let lineWidth = 0;
-    let maxWidth = document.getElementById("widthinput").value;
     let newText = ""; //this gets added to word by word, 
     // the space after the last word is not added until the next word gets added
     let lineIsNew = true;
@@ -76,10 +75,10 @@ function lineBreakText(text)
     return newText;
 }
 
-function replaceLineBreakText() 
+function replaceLineBreakText(textInput, maxwidthInput) 
 {
-    let text = document.getElementById("textinput").value;
-    document.getElementById("textinput").value = lineBreakText(emojiToKanji(text));
+    const text = textInput.value;
+    textInput.value = lineBreakText(emojiToKanji(text), maxwidthInput.value);
 }
 
 loadFontWidths();

@@ -168,8 +168,8 @@ function unLineBreakText(text) {
     return newText;
 }
 
-function replaceUnLineBreakText() 
+function replaceUnLineBreakText(textInput) 
 {
-    let text = document.getElementById("textinput").value;
-    document.getElementById("textinput").value = kanjiToEmoji(unLineBreakText(text));
+    let text = textInput.value;
+    textInput.value = kanjiToEmoji(unLineBreakText(text));
 }
